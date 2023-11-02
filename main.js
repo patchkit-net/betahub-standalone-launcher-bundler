@@ -51,7 +51,9 @@ ipcMain.on('bundle-game', async (event, data) => {
             responseType: 'arraybuffer'
         });
         const zipData = Buffer.from(response.data, 'binary');
-        const tempZipPath = path.join(__dirname, 'temp.zip');
+        const tempDir = app.getPath('temp');
+        const tempZipPath = path.join(tempDir, 'temp.zip');
+
         fs.writeFileSync(tempZipPath, zipData);
 
         console.log('Downloaded BetaHub launcher');
@@ -59,6 +61,9 @@ ipcMain.on('bundle-game', async (event, data) => {
         // Extract files
         const zip = new AdmZip(tempZipPath);
         zip.extractAllTo(data.outputDir, true);
+
+        // remove the temp zip file
+        fs.unlinkSync(tempZipPath);
 
         console.log('Extracted BetaHub launcher');
 
