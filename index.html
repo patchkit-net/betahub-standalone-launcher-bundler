@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BetaHub Launcher Bundler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            border-bottom: 1px solid #e1e1e1;
+            padding-bottom: 10px;
+        }
+
+        label {
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            z-index: 2000;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        /* Spinner styling */
+        .spinner {
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 8px solid #007BFF; /* Color of the spinner */
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>BetaHub Launcher Bundler</h1>
+
+        <button id="selectSrcDir">1. Select Game Build Directory</button>
+        <p id="selectedSrcDir"></p>
+
+        <div>
+            <label for="executablesDropdown">2. Select Game Executable:</label>
+            <select id="executablesDropdown"></select>
+        </div>
+
+        <button id="selectOutputDir">3. Select Output Directory</button>
+        <p id="selectedOutputDir"></p>
+
+        <div>
+            <label for="betahubURL">4. Provide BetaHub URL:</label>
+            <input type="text" id="betahubURL" placeholder="https://app.betahub.io/projects/6" />
+        </div>
+
+        <button id="bundle">5. Bundle Game</button>
+
+        <p id="statusMessage"></p>
+        <button id="openOutputDir" style="display:none;">Open Output Directory</button>
+    </div>
+
+    <!-- Overlay for when processing -->
+    <div class="overlay" id="overlay">
+        <div class="spinner" id="spinner"></div>
+    </div>
+    <div class="popup" id="popup">
+        Process completed successfully!
+        <button onclick="hidePopup()">Close</button>
+    </div>
+
+    <script src="renderer.js"></script>
+    <script>
+        function showPopup() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('spinner').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function hidePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('spinner').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

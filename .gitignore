@@ -1,0 +1,11 @@
+# OS generated files
+.DS_Store
+
+# Distribution directory
+dist/
+
+# Node.js related
+node_modules/
+
+# Temp files
+temp.zip
