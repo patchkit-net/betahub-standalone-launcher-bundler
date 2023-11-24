@@ -1,6 +1,6 @@
 {
   "name": "betahub-launcher-bundler",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "main.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "keywords": [],
   "author": "",
   "build": {
-    "appId": "com.yourcompany.yourappid",
+    "appId": "io.betahub.launcher-bundler",
     "mac": {
       "category": "public.app-category.utilities"
     },

@@ -46,8 +46,12 @@ ipcMain.on('bundle-game', async (event, data) => {
 
         console.log('Project ID: ' + projectId);
 
-        // Download BetaHub launcher
-        const response = await axios.get('https://public.3.basecamp.com/p/CZbWrJyYcz9YqguJVtJXijoP/attachments/21b366fa-8ab8-11ee-94e0-ce416d59e241/download/betahub-standalone-launcher-11-24-2023.zip?attachment=true', {
+        // Get the URL from your endpoint
+        const endpointResponse = await axios.get('https://57g3wtonaxnpe7lem2bjjv7hwe0glawl.lambda-url.eu-west-3.on.aws/');
+        const downloadUrl = endpointResponse.data.url;
+
+        // Download BetaHub launcher using the URL from the endpoint
+        const response = await axios.get(downloadUrl, {
             responseType: 'arraybuffer'
         });
         const zipData = Buffer.from(response.data, 'binary');
