@@ -17,7 +17,7 @@ function createWindow() {
             preload: path.join(__dirname, 'preload.js')
         }
     });
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
 
 
     mainWindow.loadFile('index.html');
@@ -47,7 +47,7 @@ ipcMain.on('bundle-game', async (event, data) => {
         console.log('Project ID: ' + projectId);
 
         // Download BetaHub launcher
-        const response = await axios.get('https://public.3.basecamp.com/p/CZbWrJyYcz9YqguJVtJXijoP/attachments/b8e71592-73fe-11ee-b682-aaa4f1cd8999/download/betahub-launcher-2023-10-26.zip?attachment=true', {
+        const response = await axios.get('https://public.3.basecamp.com/p/CZbWrJyYcz9YqguJVtJXijoP/attachments/21b366fa-8ab8-11ee-94e0-ce416d59e241/download/betahub-standalone-launcher-11-24-2023.zip?attachment=true', {
             responseType: 'arraybuffer'
         });
         const zipData = Buffer.from(response.data, 'binary');
